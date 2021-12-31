@@ -20,13 +20,23 @@ giveMeRandomP()
 
 function startTyping(){
     let alphabetArray = document.querySelectorAll('.typing-text p span')
-    if(textField.value[indexForAlpahbet]==alphabetArray[indexForAlpahbet].textContent){
-        alphabetArray[indexForAlpahbet].classList.add('correct')
+    if(textField.value.split('')[indexForAlpahbet]==undefined){
+        indexForAlpahbet--
+        alphabetArray[indexForAlpahbet].classList.remove('correct')
+        alphabetArray[indexForAlpahbet].classList.remove('incorrect')
     }
     else{
-        alphabetArray[indexForAlpahbet].classList.add('incorrect')
+
+        if(textField.value[indexForAlpahbet].split('')==alphabetArray[indexForAlpahbet].textContent){
+            alphabetArray[indexForAlpahbet].classList.add('correct')
+        }
+        else{
+            alphabetArray[indexForAlpahbet].classList.add('incorrect')
+        }
     }
     indexForAlpahbet++
+    alphabetArray.forEach(spanEl=>spanEl.classList.remove('active'))
+    alphabetArray[indexForAlpahbet].classList.add('active')
 }
 
 

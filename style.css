@@ -12,6 +12,7 @@ body{
     justify-content: center;
     align-items: center;
     background-color: #CEE5D0;
+    color: black;
 }
 .wrapper{
     width: 50vw;
@@ -42,6 +43,9 @@ body{
     color: rgb(145, 12, 12);
 
   }
+  .typing-text p span.active{
+    color: #c7d5e7;
+}
 .main-info{
     display: flex;
     /* border: black solid 1px; */
