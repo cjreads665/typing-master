@@ -19,6 +19,7 @@ body{
     padding: 2rem;
     background-color: #FEF5ED;
 }
+
 .typing-text{
     height: 20rem;
     overflow-y: scroll;
@@ -33,6 +34,13 @@ body{
 .typing-text {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+  }
+  .typing-text p span.correct{
+      color: #1C6DD0;
+  }
+  .typing-text p span.incorrect{
+    color: rgb(145, 12, 12);
+
   }
 .main-info{
     display: flex;
