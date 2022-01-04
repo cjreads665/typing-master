@@ -10,6 +10,8 @@ let text = document.querySelector('.typing-text p'),
 textField = document.querySelector('.text-box'),
 wrapper = document.querySelector('.wrapper'),
 indexForAlphabet =0
+let isTyping=false
+let time = document.querySelector('.time span b')
 
 function giveMeRandomP(){
     //generating a random index within our stories array's length
@@ -29,8 +31,6 @@ giveMeRandomP()
 function startTyping(){
     let spansInText = document.querySelectorAll('p span')
     let typedVal = textField.value.split('')
-    // console.log(spansInText[indexForAlphabet].innerHTML);
-    console.log(typedVal[indexForAlphabet]);
     if(typedVal[indexForAlphabet]!==undefined){
         if(typedVal[indexForAlphabet]==spansInText[indexForAlphabet].innerHTML){
             spansInText[indexForAlphabet].classList.add('correct')
@@ -52,5 +52,23 @@ function startTyping(){
     
 }
 
+function decreaseTime(){
+    time.textContent--
+}
+
+function timer(){
+    if(time.textContent<=0){
+        clearInterval(timer)
+    }
+    else{
+        time.textContent--
+    }
+}
 
 textField.addEventListener('input', startTyping)
+textField.addEventListener('input',()=>{
+    if(!isTyping){
+        let start = setInterval(timer,1000)
+        isTyping=true
+    }
+})
