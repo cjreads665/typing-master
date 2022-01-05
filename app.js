@@ -51,7 +51,7 @@ function startTyping(){
 
     
 }
-
+time.textContent=3
 function decreaseTime(){
     time.textContent--
 }
@@ -65,7 +65,15 @@ function timer(){
     }
 }
 
-textField.addEventListener('input', startTyping)
+textField.addEventListener('input', ()=>{
+    if(time.textContent<=0){
+        alert('Time\'s Up')
+    }
+    else{
+        startTyping()
+    }
+    
+})
 textField.addEventListener('input',()=>{
     if(!isTyping){
         let start = setInterval(timer,1000)
