@@ -13,9 +13,10 @@ indexForAlphabet =0
 let isTyping=false
 let time = document.querySelector('.time span b')
 let mistakes = document.querySelector('.mistakes span b')
-let wpm = document.querySelector('.wpm')
-let cpm = document.querySelector('.cpm')
+let wpm = document.querySelector('.wpm span b')
+let cpm = document.querySelector('.cpm span b')
 console.log(mistakes);
+let typing = false
 
 function giveMeRandomP(){
     //generating a random index within our stories array's length
@@ -39,6 +40,7 @@ function startTyping(){
         if(typedVal[indexForAlphabet]==spansInText[indexForAlphabet].innerHTML){
             spansInText[indexForAlphabet].classList.add('correct')
             indexForAlphabet++
+            cpm.textContent++
         }
         else{
             spansInText[indexForAlphabet].classList.add('incorrect')
@@ -48,11 +50,21 @@ function startTyping(){
     }
     else{
         indexForAlphabet--
+        spansInText[indexForAlphabet].classList.contains('incorrect') ? mistakes.textContent-- : false
+        spansInText[indexForAlphabet].classList.contains('correct') ? cpm.textContent-- : false
         spansInText[indexForAlphabet].classList.remove('incorrect')
         spansInText[indexForAlphabet].classList.remove('correct')
     }
     spansInText.forEach(spanEl=>spanEl.classList.remove('active'))
     spansInText[indexForAlphabet].classList.add('active')
+    let totalArray = document.querySelectorAll('.correct')
+    console.log(time.textContent);
+    // console.log(Math.round((cpm.textContent/5)/(60-time.textContent)*60))
+    let calc = Math.round((cpm.textContent/5)/(60-time.textContent)*60)
+    if(calc =='Infinity') wpm.textContent = 0
+    else{
+        wpm.textContent = calc
+    }
     
 }
 // time.textContent=3
@@ -68,6 +80,8 @@ function timer(){
         time.textContent--
     }
 }
+
+
 
 textField.addEventListener('input', ()=>{
     if(time.textContent<=0){
