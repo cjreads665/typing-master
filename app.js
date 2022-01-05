@@ -12,6 +12,10 @@ wrapper = document.querySelector('.wrapper'),
 indexForAlphabet =0
 let isTyping=false
 let time = document.querySelector('.time span b')
+let mistakes = document.querySelector('.mistakes span b')
+let wpm = document.querySelector('.wpm')
+let cpm = document.querySelector('.cpm')
+console.log(mistakes);
 
 function giveMeRandomP(){
     //generating a random index within our stories array's length
@@ -39,6 +43,7 @@ function startTyping(){
         else{
             spansInText[indexForAlphabet].classList.add('incorrect')
             indexForAlphabet++
+            mistakes.textContent++
         }
     }
     else{
@@ -48,10 +53,9 @@ function startTyping(){
     }
     spansInText.forEach(spanEl=>spanEl.classList.remove('active'))
     spansInText[indexForAlphabet].classList.add('active')
-
     
 }
-time.textContent=3
+// time.textContent=3
 function decreaseTime(){
     time.textContent--
 }
