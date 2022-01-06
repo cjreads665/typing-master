@@ -20,6 +20,10 @@ body{
     padding: 2rem;
     background-color: #FEF5ED;
 }
+.text-box{
+    position: absolute;
+    opacity: 0;
+}
 
 .typing-text{
     height: 20rem;
