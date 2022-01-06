@@ -15,6 +15,7 @@ let time = document.querySelector('.time span b')
 let mistakes = document.querySelector('.mistakes span b')
 let wpm = document.querySelector('.wpm span b')
 let cpm = document.querySelector('.cpm span b')
+let button = document.querySelector('button')
 console.log(mistakes);
 let typing = false
 
@@ -61,7 +62,7 @@ function startTyping(){
     console.log(time.textContent);
     // console.log(Math.round((cpm.textContent/5)/(60-time.textContent)*60))
     let calc = Math.round((cpm.textContent/5)/(60-time.textContent)*60)
-    if(calc =='Infinity') wpm.textContent = 0
+    if(calc =='Infinity'|| calc=='NaN') wpm.textContent = 0
     else{
         wpm.textContent = calc
     }
@@ -81,7 +82,19 @@ function timer(){
     }
 }
 
-
+button.addEventListener('click',()=>{
+    indexForAlphabet=0
+    clearInterval(start)
+    text.textContent=''
+    textField.value=""
+    wpm.textContent=0
+    cpm.textContent=0
+    mistakes.textContent=0
+    time.textContent=60
+    giveMeRandomP()
+    isTyping=false
+    // time.textContent=60
+})
 
 textField.addEventListener('input', ()=>{
     if(time.textContent<=0){
@@ -92,9 +105,10 @@ textField.addEventListener('input', ()=>{
     }
     
 })
+let start;
 textField.addEventListener('input',()=>{
     if(!isTyping){
-        let start = setInterval(timer,1000)
+        start = setInterval(timer,1000)
         isTyping=true
     }
 })
